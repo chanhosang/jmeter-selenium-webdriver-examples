@@ -1,0 +1,13 @@
+# Logs
+logs
+*.log
+
+# Output of 'npm pack'
+*.tgz
+*.zip
+
+# runtime artifacts folder(s)
+*-*-*_*-*-*.*
+
+# maven
+target

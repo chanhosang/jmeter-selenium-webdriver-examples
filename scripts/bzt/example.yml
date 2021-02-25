@@ -1,0 +1,57 @@
+# To demonstrate how to run browser-level load test using JMeter + Selenium WebDriver.
+#
+# For example,
+#   bzt scripts/bzt/example.yml
+#   bzt scripts/bzt/example.yml scripts/bzt/example_reporting.yml
+#   bzt scripts/bzt/example.yml -o settings.env.CHROME_DRIVER_LOCATION='C:/webdrivers/chromedriver.exe'
+---
+settings:
+  env:
+    APP_URL: https://the-internet.herokuapp.com/login
+    SCREENSHOT_LOCATION: ./screenshots/
+    SELENIUM_GRID_HOST: localhost
+    CHROME_VERSION: 88.0.4324.96
+    # ONLY for jp@gc - Remote Driver Config
+    # Please specify the actual location of the dowloaded chrome driver via command line.
+    CHROME_DRIVER_LOCATION: chromedriver.exe
+    JMETER_NAME: jmeter_example
+
+execution:
+
+- executor: jmeter
+  scenario: SCENARIO-JMETER
+  concurrency: 1
+  ramp-up: 1s
+  iterations: 1
+
+modules:
+  # A flag to run scenarios in parallel or sequential
+  local:
+    sequential: false  # false by default
+  jmeter:
+    # path: ~/.bzt/jmeter-taurus/{version}
+    # download-link: https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-{version}.zip
+    # version: 5.2
+    force-ctg: true   # true by default
+    detect-plugins: true
+    plugins:
+    - jpgc-webdriver
+    csv-jtl-flags:
+      saveAssertionResultsFailureMessage: true
+      sentBytes: true
+  blazemeter:
+    project: Browser-Level Load Test
+    report-name: Browser-Level Load Test Results
+    # token: <api-key-id>:<api-key-secret>
+
+scenarios:
+  SCENARIO-JMETER:
+    variables:
+      URL: ${APP_URL}
+      LOGIN_DOMAIN: ${APP_LOGIN_DOMAIN}
+      SELENIUM_GRID_HOST: ${SELENIUM_GRID_HOST}
+      CHROME_DRIVER_LOCATION: ${CHROME_DRIVER_LOCATION}
+      SCREENSHOT_LOCATION: ${SCREENSHOT_LOCATION}
+
+    script: jmeter-browser-based/src/test/jmeter/performance/${JMETER_NAME}.jmx
+
