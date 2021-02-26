@@ -1,0 +1,57 @@
+# To execute this docker-compose yml file use `docker-compose -f <file_name> up` Add the `-d` flag at the end for detached execution
+version: "3.9"
+services:
+  selenium-hub:
+    image: selenium/hub:3.141.59-mercury
+    container_name: selenium-hub
+    restart: always
+    ports:
+      - "4444:4444"
+    volumes:
+      - /etc/hosts:/etc/hosts
+    networks:
+      - net
+  chrome:
+    image: selenium/node-chrome:3.141.59-mercury
+    depends_on:
+      - selenium-hub
+    restart: always
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+      - NODE_MAX_INSTANCES=5
+      - NODE_MAX_SESSION=5
+    volumes:
+      - /dev/shm:/dev/shm
+      - /etc/hosts:/etc/hosts
+      - chrome_downloads:/home/seluser/Downloads
+    networks:
+      - net
+  firefox:
+    image: selenium/node-firefox:3.141.59-mercury
+    depends_on:
+      - selenium-hub
+    restart: always
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+      - NODE_MAX_INSTANCES=5
+      - NODE_MAX_SESSION=5
+    volumes:
+      - /dev/shm:/dev/shm
+      - /etc/hosts:/etc/hosts
+      - firefox_downloads:/home/seluser/downloads
+    networks:
+      - net
+
+volumes:
+  chrome_downloads:
+  firefox_downloads:
+  
+networks:
+  net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.50.2.0/27"
+          gateway: "172.50.2.1"

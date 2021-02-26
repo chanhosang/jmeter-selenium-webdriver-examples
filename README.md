@@ -4,6 +4,7 @@
   - [JMeter 5.x](#jmeter-5x)
   - [JMeter Selenium/WebDriver 3.x](#jmeter-seleniumwebdriver-3x)
   - [Taurus](#taurus)
+  - [Selenium Grid](#selenium-grid)
 - [How To Run Test?](#how-to-run-test)
 - [Debugging](#debugging)
 - [References](#references)
@@ -56,8 +57,20 @@ For more information, go to [How to Run JMeter Scripts in Taurus](https://gettau
 
 A comprehensive documentation can be found in [JMeter Executor](https://gettaurus.org/docs/JMeter/)
 
+## Selenium Grid
+Selenium Grid is a smart proxy server that makes it easy to run tests in parallel on multiple machines.
+
+To know more, refer to https://www.selenium.dev/documentation/en/grid/
+
 
 # How To Run Test?
+
+**Pre-requisite**
+* Installed Taurus
+* Installed Selenium Grid
+
+    Refer to: <project_dir>/selenium-grid/README.md
+
 
 Recommend to run test using taurus command-line tool. To know more, refer to [Taurus Command-Line Tool](https://gettaurus.org/docs/CommandLine/)
 
@@ -98,3 +111,5 @@ For debugging purpose, you might want to run the test locally so that you could 
 [Web Driver Tutorial](https://jmeter-plugins.org/wiki/WebDriverTutorial/)
 
 [Integration Of Selenium With JMeter](https://www.softwaretestinghelp.com/integrating-jmeter-selenium/)
+
+[Selenium Grid](https://www.selenium.dev/documentation/en/grid/)

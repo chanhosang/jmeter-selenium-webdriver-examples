@@ -1,5 +1,5 @@
-# https://gettaurus.org/docs/ConfigSyntax/
-# optional arguments:
+# NOTE: ONLY for Linux Platform
+
 ---
 # To generate *.csv output file to publish performance results in Jenkins
 ## https://gettaurus.org/docs/Reporting/
@@ -10,8 +10,13 @@ reporting:
   summary-labels: false # provides list of sample labels, status, percentage of completed, avg time and errors
   failed-labels: false  # provides list of sample labels with failures
   test-duration: true  # provides test duration
+  dump-xml: ${TAURUS_ARTIFACTS_DIR}/results/results.xml
+  dump-csv: ${TAURUS_ARTIFACTS_DIR}/results/results.csv
 
 services:
+- module: shellexec
+  prepare:
+  - mkdir "${TAURUS_ARTIFACTS_DIR}/results"
 #########################################
 # To generate HTML Report (Linux Only).
 #########################################

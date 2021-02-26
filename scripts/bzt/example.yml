@@ -4,13 +4,15 @@
 #   bzt scripts/bzt/example.yml
 #   bzt scripts/bzt/example.yml scripts/bzt/example_reporting.yml
 #   bzt scripts/bzt/example.yml -o settings.env.CHROME_DRIVER_LOCATION='C:/webdrivers/chromedriver.exe'
+#
+# https://gettaurus.org/docs/ConfigSyntax/
+
 ---
 settings:
   env:
     APP_URL: https://the-internet.herokuapp.com/login
-    SCREENSHOT_LOCATION: ./screenshots/
+    SCREENSHOT_LOCATION: ${TAURUS_ARTIFACTS_DIR}/screenshots/
     SELENIUM_GRID_HOST: localhost
-    CHROME_VERSION: 88.0.4324.96
     # ONLY for jp@gc - Remote Driver Config
     # Please specify the actual location of the dowloaded chrome driver via command line.
     CHROME_DRIVER_LOCATION: chromedriver.exe
@@ -53,5 +55,5 @@ scenarios:
       CHROME_DRIVER_LOCATION: ${CHROME_DRIVER_LOCATION}
       SCREENSHOT_LOCATION: ${SCREENSHOT_LOCATION}
 
-    script: jmeter-browser-based/src/test/jmeter/performance/${JMETER_NAME}.jmx
+    script: jmeter/src/test/jmeter/performance/${JMETER_NAME}.jmx
 
