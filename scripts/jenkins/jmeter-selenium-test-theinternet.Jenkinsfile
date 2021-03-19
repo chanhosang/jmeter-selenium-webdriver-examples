@@ -103,10 +103,6 @@ pipeline {
                 unstash "bzt-source"
 
                 echo 'Run load test with BlazeMeter Taurus, generate and publish reports'
-                // docker run --rm \
-                // -v /home/ubuntu/bzt/bzt-examples:/bzt-configs \
-                // -v /home/ubuntu/bzt/bzt-results:/tmp/artifacts \
-                // blazemeter/taurus bzt-jmeter-load-test.yml -o settings.env.RESULTS_DIR=results
 
                 script {
                     def extra_args = ""
@@ -119,16 +115,17 @@ pipeline {
                     // -o modules.jmeter.properties=\"{'jmeter.reportgenerator.overall_granularity':1000}\"
                     sh """
                     mkdir -p results
-                    bzt scripts/bzt/example.yml \
-                    scripts/bzt/example_reporting.yml \
+                    bzt scripts/bzt/theinternet.yml \
+                    scripts/bzt/theinternet_reporting.yml \
                     -o settings.env.SELENIUM_GRID_HOST=${params.selenium_grid_host} \
                     -o execution.0.concurrency=${params.concurrency} \
                     -o execution.0.ramp-up=${params.ramp_up} \
                     -o execution.0.iterations=${params.iterations} \
-                    -o modules.jmeter.properties=\"{'jmeter.reportgenerator.overall_granularity':${params.jmeter_report_granularity}}\"  \
-                    -o modules.jmeter.properties=\"{'jmeter.reportgenerator.report_title':Integration of Selenium with JMeter}\"  \
+                    -o modules.jmeter.properties=\"{'jmeter.reportgenerator.overall_granularity':10000, \
+                    'jmeter.reportgenerator.report_title':Integration of Selenium with JMeter}\"  \
                     ${extra_args}
                     """
+
                     // Move the reports from taurus artifacts dir location to workspace dir
                     sh """
                     mv /tmp/artifacts .

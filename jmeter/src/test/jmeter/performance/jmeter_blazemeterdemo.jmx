@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1.1 r1855137">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Example Load Test - Find Flights from Simple Travel Agency" enabled="true">
+      <stringProp name="TestPlan.comments">This is an example browser-based web application load testing by using https://blazedemo.com/</stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">true</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables - Application" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="URL" elementType="Argument">
+            <stringProp name="Argument.name">URL</stringProp>
+            <stringProp name="Argument.value">https://blazedemo.com</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables - General" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="SCREENSHOT_LOCATION" elementType="Argument">
+            <stringProp name="Argument.name">SCREENSHOT_LOCATION</stringProp>
+            <stringProp name="Argument.value">./</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">Specify the location of screenshots</stringProp>
+          </elementProp>
+          <elementProp name="WAIT_TIME" elementType="Argument">
+            <stringProp name="Argument.name">WAIT_TIME</stringProp>
+            <stringProp name="Argument.value">10</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">The maximum page element wait time</stringProp>
+          </elementProp>
+          <elementProp name="SLEEP_TIME" elementType="Argument">
+            <stringProp name="Argument.name">SLEEP_TIME</stringProp>
+            <stringProp name="Argument.value">1000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">The maximum random wait time within the sampler</stringProp>
+          </elementProp>
+          <elementProp name="MAXIMUM_DELAY_TIME" elementType="Argument">
+            <stringProp name="Argument.name">MAXIMUM_DELAY_TIME</stringProp>
+            <stringProp name="Argument.value">1000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">The maximum user pause time between each sampler</stringProp>
+          </elementProp>
+          <elementProp name="CONSTANT_DELAY_TIME" elementType="Argument">
+            <stringProp name="Argument.name">CONSTANT_DELAY_TIME</stringProp>
+            <stringProp name="Argument.value">1000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">The constant user pause time between each sampler</stringProp>
+          </elementProp>
+          <elementProp name="CSV_DATA_LOCATION" elementType="Argument">
+            <stringProp name="Argument.name">CSV_DATA_LOCATION</stringProp>
+            <stringProp name="Argument.value">C:/hosang/jmeter-selenium-webdriver-examples/jmeter/src/main/resources/data/flights.csv</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables - Browser Driver" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="SELENIUM_GRID_HOST" elementType="Argument">
+            <stringProp name="Argument.name">SELENIUM_GRID_HOST</stringProp>
+            <stringProp name="Argument.value">localhost</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="CHROME_DRIVER_LOCATION" elementType="Argument">
+            <stringProp name="Argument.name">CHROME_DRIVER_LOCATION</stringProp>
+            <stringProp name="Argument.value">C:/selenium/webdrivers/chromedriver.exe</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">ONLY for Chrome Driver Config in Windows</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables - Page Elements" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="ELEMENT_H1" elementType="Argument">
+            <stringProp name="Argument.name">ELEMENT_H1</stringProp>
+            <stringProp name="Argument.value">pkg.By.cssSelector(&quot;h1&quot;)</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="ELEMENT_H2" elementType="Argument">
+            <stringProp name="Argument.name">ELEMENT_H2</stringProp>
+            <stringProp name="Argument.value">pkg.By.cssSelector(&quot;h2&quot;)</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="ELEMENT_H3" elementType="Argument">
+            <stringProp name="Argument.name">ELEMENT_H3</stringProp>
+            <stringProp name="Argument.value">pkg.By.cssSelector(&quot;h3&quot;)</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="ELEMENT_SELECT_FROMPORT" elementType="Argument">
+            <stringProp name="Argument.name">ELEMENT_SELECT_FROMPORT</stringProp>
+            <stringProp name="Argument.value">pkg.By.name(&quot;fromPort&quot;)</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="ELEMENT_SELECT_TOPORT" elementType="Argument">
+            <stringProp name="Argument.name">ELEMENT_SELECT_TOPORT</stringProp>
+            <stringProp name="Argument.value">pkg.By.name(&quot;toPort&quot;)</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="ELEMENT_BUTTON_FIND_FLIGHTS" elementType="Argument">
+            <stringProp name="Argument.name">ELEMENT_BUTTON_FIND_FLIGHTS</stringProp>
+            <stringProp name="Argument.value">pkg.By.cssSelector(&quot;input.btn.btn-primary&quot;)</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="ELEMENT_BUTTON_CHOOSE_FLIGHT" elementType="Argument">
+            <stringProp name="Argument.name">ELEMENT_BUTTON_CHOOSE_FLIGHT</stringProp>
+            <stringProp name="Argument.value">pkg.By.cssSelector(&quot;input[value=&apos;Choose This Flight&apos;]:first-of-type&quot;)</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="ELEMENT_BUTTON_PURCHASE_FLIGHT" elementType="Argument">
+            <stringProp name="Argument.name">ELEMENT_BUTTON_PURCHASE_FLIGHT</stringProp>
+            <stringProp name="Argument.value">pkg.By.cssSelector(&quot;input[value=&apos;Purchase Flight&apos;]&quot;)</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="ELEMENT_TEXT_PURCHASE_SUCCESSFUL" elementType="Argument">
+            <stringProp name="Argument.name">ELEMENT_TEXT_PURCHASE_SUCCESSFUL</stringProp>
+            <stringProp name="Argument.value">Thank you for your purchase today!</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="ELEMENT_TEXT_WELCOME" elementType="Argument">
+            <stringProp name="Argument.name">ELEMENT_TEXT_WELCOME</stringProp>
+            <stringProp name="Argument.value">Welcome to the Simple Travel Agency!</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <com.googlecode.jmeter.plugins.webdriver.config.RemoteDriverConfig guiclass="com.googlecode.jmeter.plugins.webdriver.config.gui.RemoteDriverConfigGui" testclass="com.googlecode.jmeter.plugins.webdriver.config.RemoteDriverConfig" testname="jp@gc - Remote Driver Config" enabled="true">
+        <stringProp name="RemoteDriverConfig.general.selenium.grid.url">http://${SELENIUM_GRID_HOST}:4444/wd/hub</stringProp>
+        <stringProp name="RemoteDriverConfig.general.selenium.capability">CHROME</stringProp>
+        <stringProp name="RemoteDriverConfig.general.selenium.file.detector">USELESS</stringProp>
+      </com.googlecode.jmeter.plugins.webdriver.config.RemoteDriverConfig>
+      <hashTree/>
+      <com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig guiclass="com.googlecode.jmeter.plugins.webdriver.config.gui.ChromeDriverConfigGui" testclass="com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig" testname="jp@gc - Chrome Driver Config" enabled="false">
+        <stringProp name="WebDriverConfig.proxy_type">SYSTEM</stringProp>
+        <stringProp name="WebDriverConfig.proxy_pac_url"></stringProp>
+        <stringProp name="WebDriverConfig.http_host"></stringProp>
+        <intProp name="WebDriverConfig.http_port">8080</intProp>
+        <boolProp name="WebDriverConfig.use_http_for_all_protocols">true</boolProp>
+        <stringProp name="WebDriverConfig.https_host"></stringProp>
+        <intProp name="WebDriverConfig.https_port">8080</intProp>
+        <stringProp name="WebDriverConfig.ftp_host"></stringProp>
+        <intProp name="WebDriverConfig.ftp_port">8080</intProp>
+        <stringProp name="WebDriverConfig.socks_host"></stringProp>
+        <intProp name="WebDriverConfig.socks_port">8080</intProp>
+        <stringProp name="WebDriverConfig.no_proxy">localhost</stringProp>
+        <boolProp name="WebDriverConfig.maximize_browser">false</boolProp>
+        <boolProp name="WebDriverConfig.reset_per_iteration">true</boolProp>
+        <boolProp name="WebDriverConfig.dev_mode">false</boolProp>
+        <stringProp name="ChromeDriverConfig.chromedriver_path">${CHROME_DRIVER_LOCATION}</stringProp>
+        <boolProp name="ChromeDriverConfig.android_enabled">false</boolProp>
+        <boolProp name="ChromeDriverConfig.headless_enabled">false</boolProp>
+        <boolProp name="ChromeDriverConfig.insecurecerts_enabled">false</boolProp>
+      </com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig>
+      <hashTree/>
+      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+        <collectionProp name="CookieManager.cookies"/>
+        <boolProp name="CookieManager.clearEachIteration">true</boolProp>
+      </CookieManager>
+      <hashTree/>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+        <collectionProp name="HeaderManager.headers">
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">User-Agent</stringProp>
+            <stringProp name="Header.value">Mozilla/5.0 (Windows NT 6.2; WOW64; Trident/7.0; rv:11.0) like Gecko</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Accept</stringProp>
+            <stringProp name="Header.value">image/gif, image/jpeg, image/pjpeg, application/x-ms-application, application/xaml+xml, application/x-ms-xbap, */*</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Accept-Language</stringProp>
+            <stringProp name="Header.value">en-MY</stringProp>
+          </elementProp>
+        </collectionProp>
+      </HeaderManager>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1281132211000</longProp>
+        <longProp name="ThreadGroup.end_time">1281132211000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <stringProp name="ThreadGroup.duration">30</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables - General" enabled="false">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="departureCity" elementType="Argument">
+              <stringProp name="Argument.name">departureCity</stringProp>
+              <stringProp name="Argument.value">Boston</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="destinationCity" elementType="Argument">
+              <stringProp name="Argument.name">destinationCity</stringProp>
+              <stringProp name="Argument.value">London</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+          <stringProp name="TestPlan.comments">To get the destination/departure city from external file.</stringProp>
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <stringProp name="filename">${CSV_DATA_LOCATION}</stringProp>
+          <boolProp name="ignoreFirstLine">false</boolProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="variableNames"></stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Delay Timer Random" enabled="true">
+          <stringProp name="ConstantTimer.delay">${CONSTANT_DELAY_TIME}</stringProp>
+          <stringProp name="RandomTimer.range">${MAXIMUM_DELAY_TIME}</stringProp>
+          <stringProp name="TestPlan.comments">To allow random pausing between each request to simulate real-life user behaviour</stringProp>
+        </UniformRandomTimer>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="1. Welcome Page" enabled="true">
+          <stringProp name="WebDriverSampler.script">WDS.sampleResult.sampleStart()
+ try{
+    var pkg = JavaImporter(org.openqa.selenium);
+    var support_ui = JavaImporter(org.openqa.selenium.support.ui.WebDriverWait);
+    var ui = JavaImporter(org.openqa.selenium.support.ui);
+    var wait = new support_ui.WebDriverWait(WDS.browser, ${WAIT_TIME});
+    var junit = JavaImporter(org.junit);  
+    var fileUtils = JavaImporter(org.apache.commons.io);
+    var io = JavaImporter(java.io);
+    var location = &quot;${SCREENSHOT_LOCATION}/&quot; //&apos;C:/selenium/webdrivers/&apos;;
+    var screenshot = WDS.browser.getScreenshotAs(pkg.OutputType.FILE);
+    var exception = null;
+
+    // Logon to website
+    WDS.browser.get(&quot;${URL}&quot;);
+
+    // To maxmize the browser window that&apos;s needed when using remote driver config
+    WDS.browser.manage().window().setSize(new pkg.Dimension(1920, 1080));  
+		
+    // Wait until the page is fully loaded
+    WDS.log.info(&quot;title.getText=&quot;+WDS.browser.findElement(pkg.By.xpath(&quot;//title&quot;)).getText());
+    WDS.log.info(&quot;title.innerText=&quot;+WDS.browser.findElement(pkg.By.xpath(&quot;//title&quot;)).getAttribute(&quot;innerText&quot;));
+    wait.until(ui.ExpectedConditions.attributeToBe(pkg.By.cssSelector(&quot;title&quot;), &quot;innerText&quot;, &quot; BlazeDemo&quot;));
+
+    // Verify welcome message
+    junit.Assert.assertEquals(&quot;${ELEMENT_TEXT_WELCOME}&quot;, WDS.browser.findElement(${ELEMENT_H1}).getText());
+            
+} catch(err){
+    WDS.log.error(&quot;${CURRENT_TIME}: &quot;+err.message);   
+    fileUtils.FileUtils.copyFile(screenshot, new io.File(location+&quot;screenshot-${CURRENT_TIME}-${__samplerName()}.png&quot;));
+    exception = err;
+} finally {
+    if (exception != null) throw (exception);
+}
+WDS.sampleResult.sampleEnd()
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree>
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script"> import java.text.SimpleDateFormat
+ 
+ // For Windows, need to convert backslash to forward slash
+ ${__groovy(vars.put(&apos;SCREENSHOT_LOCATION&apos;\,vars.get(&apos;SCREENSHOT_LOCATION&apos;).replace(&apos;\\\&apos;\, &apos;/&apos;)),)}
+ 
+String location = vars.get(&apos;SCREENSHOT_LOCATION&apos;)
+//log.info (&quot;SCREENSHOT_LOCATION:&quot;+location);
+
+// Generate uniqte id for screenshot naming based on date time and iteration number
+Date date = new Date()
+String dateTime = date.format(&quot;yyyyMMddHHmmss&quot;)
+String threadNumber = ${__threadNum}
+String iteration = vars.getIteration()
+
+String currentTime = threadNumber+&quot;-&quot;+iteration+&quot;-&quot;+dateTime
+//log.info (&quot;SCREENSHOT SUFFIX: &quot;+currentTime);
+
+// Set the variable value to be used for screenshot naming
+vars.put(&quot;CURRENT_TIME&quot;, currentTime)
+
+//log.info (&quot;SCREENSHOT MAXIMUM_DELAY_TIME: &quot;+${MAXIMUM_DELAY_TIME});
+// Set random sleep timer for each request that use this variable
+String randomSleepTime = ${__Random(1000,${MAXIMUM_DELAY_TIME})}
+vars.put(&quot;SLEEP_TIME_RANDOM&quot;, randomSleepTime)
+
+</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PreProcessor>
+          <hashTree/>
+        </hashTree>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="2. Select Departure and Destination" enabled="true">
+          <stringProp name="WebDriverSampler.script">WDS.sampleResult.sampleStart()
+ try{ 
+    var pkg = JavaImporter(org.openqa.selenium);
+    var support_ui = JavaImporter(org.openqa.selenium.support.ui.WebDriverWait);
+    var ui = JavaImporter(org.openqa.selenium.support.ui);
+    var wait = new support_ui.WebDriverWait(WDS.browser, ${WAIT_TIME});
+    var junit = JavaImporter(org.junit);  
+    var fileUtils = JavaImporter(org.apache.commons.io);
+    var io = JavaImporter(java.io);
+    var location = &quot;${SCREENSHOT_LOCATION}/&quot; //&apos;C:/selenium/webdrivers/&apos;;
+    var screenshot = WDS.browser.getScreenshotAs(pkg.OutputType.FILE);
+    var exception = null;
+
+    // Select Departure City
+    WDS.log.info(&quot;departureCity: ${departureCity}&quot;);
+    wait.until(ui.ExpectedConditions.visibilityOfElementLocated(${ELEMENT_SELECT_FROMPORT}));
+    new ui.Select(WDS.browser.findElement(${ELEMENT_SELECT_FROMPORT})).selectByVisibleText(&apos;${departureCity}&apos;);
+
+    // Select Destination City
+    WDS.log.info(&quot;departureCity: ${destinationCity}&quot;);
+    wait.until(ui.ExpectedConditions.visibilityOfElementLocated(${ELEMENT_SELECT_TOPORT}));
+    new ui.Select(WDS.browser.findElement(${ELEMENT_SELECT_TOPORT})).selectByVisibleText(&apos;${destinationCity}&apos;);    
+   
+} catch(err){
+    WDS.log.error(&quot;${CURRENT_TIME}: &quot;+err.message);   
+    fileUtils.FileUtils.copyFile(screenshot, new io.File(location+&quot;screenshot-${CURRENT_TIME}-${__samplerName()}.png&quot;));
+    exception = err;
+} finally {
+    if (exception != null) throw (exception);
+}
+WDS.sampleResult.sampleEnd()
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="3. Find Flights" enabled="true">
+          <stringProp name="WebDriverSampler.script">WDS.sampleResult.sampleStart()
+ try{ 
+    var pkg = JavaImporter(org.openqa.selenium);
+    var support_ui = JavaImporter(org.openqa.selenium.support.ui.WebDriverWait);
+    var ui = JavaImporter(org.openqa.selenium.support.ui);
+    var wait = new support_ui.WebDriverWait(WDS.browser, ${WAIT_TIME});
+    var junit = JavaImporter(org.junit);  
+    var fileUtils = JavaImporter(org.apache.commons.io);
+    var io = JavaImporter(java.io);
+    var location = &quot;${SCREENSHOT_LOCATION}/&quot; //&apos;C:/selenium/webdrivers/&apos;;
+    var screenshot = WDS.browser.getScreenshotAs(pkg.OutputType.FILE);
+    var exception = null;
+
+    // Click on &apos;Find Flights&apos; button
+    WDS.browser.findElement(${ELEMENT_BUTTON_FIND_FLIGHTS}).click();
+
+    // Wait until the page is fully loaded
+    WDS.log.info(&quot;title.getText=&quot;+WDS.browser.findElement(pkg.By.xpath(&quot;//title&quot;)).getText());
+    WDS.log.info(&quot;title.innerText=&quot;+WDS.browser.findElement(pkg.By.xpath(&quot;//title&quot;)).getAttribute(&quot;innerText&quot;));
+    
+    wait.until(ui.ExpectedConditions.attributeToBe(pkg.By.cssSelector(&quot;title&quot;), &quot;innerText&quot;, &quot;BlazeDemo - reserve&quot;));
+    
+    // Verify flight
+    junit.Assert.assertEquals(&quot;Flights from ${departureCity} to ${destinationCity}:&quot;, WDS.browser.findElement(${ELEMENT_H3}).getText());
+    
+} catch(err){
+    WDS.log.error(&quot;${CURRENT_TIME}: &quot;+err.message);   
+    fileUtils.FileUtils.copyFile(screenshot, new io.File(location+&quot;screenshot-${CURRENT_TIME}-${__samplerName()}.png&quot;));
+    exception = err;
+} finally {
+    if (exception != null) throw (exception);
+}
+WDS.sampleResult.sampleEnd()
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="4. Choose Flight" enabled="true">
+          <stringProp name="WebDriverSampler.script">WDS.sampleResult.sampleStart()
+ try{   
+    var pkg = JavaImporter(org.openqa.selenium);
+    var support_ui = JavaImporter(org.openqa.selenium.support.ui.WebDriverWait);
+    var ui = JavaImporter(org.openqa.selenium.support.ui);
+    var wait = new support_ui.WebDriverWait(WDS.browser, ${WAIT_TIME});
+    var junit = JavaImporter(org.junit);  
+    var fileUtils = JavaImporter(org.apache.commons.io);
+    var io = JavaImporter(java.io);
+    var location = &quot;${SCREENSHOT_LOCATION}/&quot; //&apos;C:/selenium/webdrivers/&apos;;
+    var screenshot = WDS.browser.getScreenshotAs(pkg.OutputType.FILE);
+    var exception = null;
+
+    // Choose the 1st flight
+    wait.until(ui.ExpectedConditions.visibilityOfElementLocated(${ELEMENT_BUTTON_CHOOSE_FLIGHT}));
+    WDS.browser.findElement(${ELEMENT_BUTTON_CHOOSE_FLIGHT}).click();
+
+    // Wait until the page is fully loaded
+    WDS.log.info(&quot;title.getText=&quot;+WDS.browser.findElement(pkg.By.xpath(&quot;//title&quot;)).getText());
+    WDS.log.info(&quot;title.innerText=&quot;+WDS.browser.findElement(pkg.By.xpath(&quot;//title&quot;)).getAttribute(&quot;innerText&quot;));
+    
+    wait.until(ui.ExpectedConditions.attributeToBe(pkg.By.cssSelector(&quot;title&quot;), &quot;innerText&quot;, &quot;BlazeDemo Purchase&quot;));
+    
+    // Verify flight
+    junit.Assert.assertEquals(&quot;Your flight from TLV to SFO has been reserved.&quot;, WDS.browser.findElement(${ELEMENT_H2}).getText());
+
+    //    java.lang.Thread.sleep(5000)
+    
+} catch(err){
+    WDS.log.error(&quot;${CURRENT_TIME}: &quot;+err.message);   
+    fileUtils.FileUtils.copyFile(screenshot, new io.File(location+&quot;screenshot-${CURRENT_TIME}-${__samplerName()}.png&quot;));
+    exception = err;
+} finally {
+    if (exception != null) throw (exception);
+}
+WDS.sampleResult.sampleEnd()
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="5. Fil In Purchase Form" enabled="true">
+          <stringProp name="WebDriverSampler.script">WDS.sampleResult.sampleStart()
+ try{   
+    var pkg = JavaImporter(org.openqa.selenium);
+    var support_ui = JavaImporter(org.openqa.selenium.support.ui.WebDriverWait);
+    var ui = JavaImporter(org.openqa.selenium.support.ui);
+    var wait = new support_ui.WebDriverWait(WDS.browser, ${WAIT_TIME});
+    var junit = JavaImporter(org.junit);  
+    var fileUtils = JavaImporter(org.apache.commons.io);
+    var io = JavaImporter(java.io);
+    var location = &quot;${SCREENSHOT_LOCATION}/&quot; //&apos;C:/selenium/webdrivers/&apos;;
+    var screenshot = WDS.browser.getScreenshotAs(pkg.OutputType.FILE);
+    var exception = null;
+
+    WDS.browser.findElement(pkg.By.cssSelector(&quot;input[name=&apos;inputName&apos;]&quot;)).sendKeys(&quot;Hang Tuah&quot;);
+    java.lang.Thread.sleep(${__Random(1000,5000,)});
+    
+    WDS.browser.findElement(pkg.By.cssSelector(&quot;input[name=&apos;address&apos;]&quot;)).sendKeys(&quot;Jalan 7/21&quot;);
+    java.lang.Thread.sleep(${__Random(1000,5000,)});
+    
+    WDS.browser.findElement(pkg.By.cssSelector(&quot;input[name=&apos;city&apos;]&quot;)).sendKeys(&quot;Kuala Lumpur&quot;);
+    java.lang.Thread.sleep(${__Random(1000,5000,)});
+    
+    WDS.browser.findElement(pkg.By.cssSelector(&quot;input[name=&apos;state&apos;]&quot;)).sendKeys(&quot;Wilayah Persekutuan Kuala Lumpur&quot;);
+    java.lang.Thread.sleep(${__Random(1000,5000,)});
+    
+    WDS.browser.findElement(pkg.By.cssSelector(&quot;input[name=&apos;zipCode&apos;]&quot;)).sendKeys(&quot;70000&quot;);
+    java.lang.Thread.sleep(${__Random(1000,5000,)});
+    
+    WDS.browser.findElement(pkg.By.cssSelector(&quot;input[name=&apos;creditCardNumber&apos;]&quot;)).sendKeys(&quot;33330000&quot;);
+    java.lang.Thread.sleep(${__Random(1000,5000,)});
+
+    new ui.Select(WDS.browser.findElement(pkg.By.name(&quot;cardType&quot;))).selectByVisibleText(&apos;American Express&apos;);
+    java.lang.Thread.sleep(${__Random(1000,5000,)});     
+        
+    WDS.browser.findElement(pkg.By.cssSelector(&quot;input[name=&apos;creditCardMonth&apos;]&quot;)).clear();
+    WDS.browser.findElement(pkg.By.cssSelector(&quot;input[name=&apos;creditCardMonth&apos;]&quot;)).sendKeys(&quot;12&quot;);
+    java.lang.Thread.sleep(${__Random(1000,5000,)});
+    
+    WDS.browser.findElement(pkg.By.cssSelector(&quot;input[name=&apos;creditCardYear&apos;]&quot;)).clear();
+    WDS.browser.findElement(pkg.By.cssSelector(&quot;input[name=&apos;creditCardYear&apos;]&quot;)).sendKeys(&quot;2047&quot;); 
+    java.lang.Thread.sleep(${__Random(1000,5000,)});  
+     
+    WDS.browser.findElement(pkg.By.cssSelector(&quot;input[name=&apos;nameOnCard&apos;]&quot;)).sendKeys(&quot;Hang Tuah&quot;);   
+    java.lang.Thread.sleep(${__Random(1000,5000,)}); 
+    
+} catch(err){
+    WDS.log.error(&quot;${CURRENT_TIME}: &quot;+err.message);   
+    fileUtils.FileUtils.copyFile(screenshot, new io.File(location+&quot;screenshot-${CURRENT_TIME}-${__samplerName()}.png&quot;));
+    exception = err;
+} finally {
+    if (exception != null) throw (exception);
+}
+WDS.sampleResult.sampleEnd()
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="6. Purchase Flight" enabled="true">
+          <stringProp name="WebDriverSampler.script">WDS.sampleResult.sampleStart()
+ try{ 
+    var pkg = JavaImporter(org.openqa.selenium);
+    var support_ui = JavaImporter(org.openqa.selenium.support.ui.WebDriverWait);
+    var ui = JavaImporter(org.openqa.selenium.support.ui);
+    var wait = new support_ui.WebDriverWait(WDS.browser, ${WAIT_TIME});
+    var junit = JavaImporter(org.junit);  
+    var fileUtils = JavaImporter(org.apache.commons.io);
+    var io = JavaImporter(java.io);
+    var location = &quot;${SCREENSHOT_LOCATION}/&quot; //&apos;C:/selenium/webdrivers/&apos;;
+    var screenshot = WDS.browser.getScreenshotAs(pkg.OutputType.FILE);
+    var exception = null;
+
+    // Click on &apos;Purchase Flight&apos; button
+    wait.until(ui.ExpectedConditions.visibilityOfElementLocated(${ELEMENT_BUTTON_PURCHASE_FLIGHT}));
+    WDS.browser.findElement(${ELEMENT_BUTTON_PURCHASE_FLIGHT}).click();
+    
+    // Wait until the page is fully loaded
+    WDS.log.info(&quot;title.getText=&quot;+WDS.browser.findElement(pkg.By.xpath(&quot;//title&quot;)).getText());
+    WDS.log.info(&quot;title.innerText=&quot;+WDS.browser.findElement(pkg.By.xpath(&quot;//title&quot;)).getAttribute(&quot;innerText&quot;));
+    
+    wait.until(ui.ExpectedConditions.attributeToBe(pkg.By.cssSelector(&quot;title&quot;), &quot;innerText&quot;, &quot;BlazeDemo Confirmation&quot;));
+
+    // Verify confirmation message
+    junit.Assert.assertEquals(&quot;${ELEMENT_TEXT_PURCHASE_SUCCESSFUL}&quot;, WDS.browser.findElement(${ELEMENT_H1}).getText());    
+    
+} catch(err){
+    WDS.log.error(&quot;${CURRENT_TIME}: &quot;+err.message);   
+    fileUtils.FileUtils.copyFile(screenshot, new io.File(location+&quot;screenshot-${CURRENT_TIME}-${__samplerName()}.png&quot;));
+    exception = err;
+} finally {
+    if (exception != null) throw (exception);
+}
+WDS.sampleResult.sampleEnd()
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

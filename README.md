@@ -6,6 +6,7 @@
   - [Taurus](#taurus)
   - [Selenium Grid](#selenium-grid)
 - [How To Run Test?](#how-to-run-test)
+- [How to run JMeter Test in Docker Container?](#how-to-run-jmeter-test-in-docker-container)
 - [Debugging](#debugging)
 - [References](#references)
 
@@ -62,31 +63,74 @@ Selenium Grid is a smart proxy server that makes it easy to run tests in paralle
 
 To know more, refer to https://www.selenium.dev/documentation/en/grid/
 
+To setup in docker host, you may refer to: <project_dir>/selenium-grid/README.md
 
 # How To Run Test?
 
 **Pre-requisite**
-* Installed Taurus
-* Installed Selenium Grid
-
-    Refer to: <project_dir>/selenium-grid/README.md
-
-
-Recommend to run test using taurus command-line tool. To know more, refer to [Taurus Command-Line Tool](https://gettaurus.org/docs/CommandLine/)
+* Installed [Taurus](https://gettaurus.org/install/Installation/)
+* Installed Selenium Grid (e.g. http://172.50.2.1:4444/wd/hub)
 
 To run test with default settings:
 ```
-# To run test with default setting:
-bzt scripts/bzt/example.yml
+bzt scripts/bzt/theinternet.yml
+```
+here's another example that use external data source (csv):
+```
+bzt scripts/bzt/blazemeterdemo.yml \
+-o settings.env.CSV_DATA_LOCATION="$(pwd)/jmeter/src/main/resources/data/flights.csv"
 ```
 
 To run test and generate jmeter html report:
 ```
-bzt scripts/bzt/example.yml scripts/bzt/example_reporting.yml
-  ```
+bzt scripts/bzt/theinternet.yml scripts/bzt/theinternet_reporting.yml
+```
+here's another example that use external data source (csv):
+```
+bzt scripts/bzt/theinternet.yml scripts/bzt/blazemeterdemo_reporting.yml
+-o settings.env.CSV_DATA_LOCATION="$(pwd)/jmeter/src/main/resources/data/flights.csv"
+```
+
 Upon completion, the **JMeter HTML Dashboard Report** should be available in "<TAURUS_ARTIFACTS_DIR>/reports" folder.
 
+To know more about Taurus, refer to:
+* [Taurus Command Line](https://gettaurus.org/docs/CommandLine/)
+* [Taurus YAML Tutorial](https://gettaurus.org/docs/YAMLTutorial/)
+* [Taurus Configuration Syntax](https://gettaurus.org/docs/ConfigSyntax/)
 
+
+
+# How to run JMeter Test in Docker Container?
+
+**Pre-requisite**
+* Installed [Docker](https://docs.docker.com/get-docker/)
+* Installed Selenium Grid (e.g. http://172.50.2.1:4444/wd/hub)
+
+If you don't want to install *Taurus* in your machine, you can actually run the test inside docker container.
+
+To run test with **Taurus** inside [blazemeter/taurus docker container](https://hub.docker.com/r/blazemeter/taurus):
+
+
+```
+docker run --rm \
+-v $HOME/.bzt:/root/.bzt \
+-v $(pwd):/bzt-configs \
+-v $(pwd)/results:/tmp/artifacts \
+blazemeter/taurus \
+scripts/bzt/theinternet.yml \
+-o settings.env.SELENIUM_GRID_HOST=172.50.2.1
+```
+here's another example that use external data source (csv):
+```
+docker run --rm \
+-v $HOME/.bzt:/root/.bzt \
+-v $(pwd):/bzt-configs \
+-v $(pwd)/results:/tmp/artifacts \
+blazemeter/taurus \
+scripts/bzt/blazemeterdemo.yml \
+-o settings.env.SELENIUM_GRID_HOST=172.50.2.1 \
+-o settings.env.CSV_DATA_LOCATION="/bzt-configs/jmeter/src/main/resources/data/flights.csv"
+```
 
 # Debugging
 
@@ -101,7 +145,9 @@ For debugging purpose, you might want to run the test locally so that you could 
 
 3. In Git Bash, run the test by specifying the location of downloaded chrome driver:
     ```
-    bzt scripts/bzt/example.yml -o settings.env.CHROME_DRIVER_LOCATION='C:/webdrivers/chromedriver.exe'
+    bzt scripts/bzt/theinternet.yml \
+    -o settings.env.CSV_DATA_LOCATION='C:/hosang/jmeter-selenium-webdriver-theinternets/jmeter/src/main/resources/data/flights.csv' \
+    -o settings.env.CHROME_DRIVER_LOCATION='C:/webdrivers/chromedriver.exe'
     ```
 
 # References
